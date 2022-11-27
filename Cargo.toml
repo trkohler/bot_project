@@ -1,2 +1,2 @@
 [workspace]
-members = ["rust_bot", "scheduler"]
+members = ["telegram-bot", "scheduler"]
