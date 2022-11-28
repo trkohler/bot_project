@@ -8,6 +8,7 @@ RUN cargo build --release
 
 
 FROM debian:buster-slim
-COPY --from=builder ./target/release/${service} ./target/release/${service}
-CMD ["/target/release/${service}"]
-LABEL service=$service
+COPY --from=builder ./target/release/scheduler ./scheduler
+COPY --from=builder ./target/release/telegram-bot ./telegram-bot
+
+LABEL service=universal

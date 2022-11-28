@@ -27,13 +27,4 @@ jobs:
           registry: gcr.io
           project_id: civic-eye-272019
           image_name: bot_project_rust
-          image_tag: scheduler
-          build_args: service=scheduler
-      
-      - uses: RafikFarhad/push-to-gcr-github-action@v5-beta
-        with:
-          registry: gcr.io
-          project_id: civic-eye-272019
-          image_name: bot_project_rust
-          image_tag: telegram_bot
-          build_args: service=telegram_bot
+          image_tag: universal
