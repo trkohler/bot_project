@@ -1,0 +1,39 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build-and-push-to-gcr:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: read  # This is required for actions/checkout
+    steps:      
+      - uses: actions/checkout@v3
+
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v0.3.1
+        with:
+          create_credentials_file: 'true'
+          workload_identity_provider: projects/126594844665/locations/global/workloadIdentityPools/github-actions/*
+          service_account: ci-service-account@civic-eye-272019.iam.gserviceaccount.com
+        
+      - uses: RafikFarhad/push-to-gcr-github-action@v5-beta
+        with:
+          registry: gcr.io
+          project_id: civic-eye-272019
+          image_name: bot_project_rust
+          image_tag: scheduler
+          build_args: service=scheduler
+      
+      - uses: RafikFarhad/push-to-gcr-github-action@v5-beta
+        with:
+          registry: gcr.io
+          project_id: civic-eye-272019
+          image_name: bot_project_rust
+          image_tag: telegram_bot
+          build_args: service=telegram_bot

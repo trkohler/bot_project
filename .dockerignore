@@ -1,0 +1,5 @@
+target
+*/target/*
+.env
+.github
+.vscode
