@@ -19,7 +19,7 @@ jobs:
         uses: google-github-actions/auth@v1.0.0
         with:
           create_credentials_file: 'true'
-          workload_identity_provider: https://iam.googleapis.com/projects/126594844665/locations/global/workloadIdentityPools/github-actions/providers/github
+          workload_identity_provider: projects/126594844665/locations/global/workloadIdentityPools/github-actions/providers/github
           service_account: ci-service-account@civic-eye-272019.iam.gserviceaccount.com
         
       - uses: RafikFarhad/push-to-gcr-github-action@v5-beta
